@@ -1,0 +1,22 @@
+table {
+  text-align: center;
+  margin: 1em;
+  border-collapse: collapse;
+  width: 90%;
+}
+table th {
+  text-align: left;
+  padding: 4px;
+  border: 1px solid #e3e3e3;
+  width: 15px;
+}
+
+table td {
+  border: 1px solid #e3e3e3;
+  padding: 4px 8px;
+  text-align: left;
+}
+
+table tr:nth-child(even) td {
+  background-color: #e7edf0;
+}
