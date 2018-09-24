@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // import axios
-// import axios from 'axios';
+import axios from 'axios';
 
 // import CSS files
 import './App.css';
@@ -17,9 +17,7 @@ class App extends Component {
 
     // set initial state
     this.state = {
-      value: '',
-      isLoaded: false,
-      items: []
+      
     };
   }
 
@@ -31,7 +29,7 @@ class App extends Component {
     return (
       <div className="container">
         <header className="header">
-          <h1 className="App-title">My GitHub Favourits</h1>
+          <h1 className="App-title">My GitHub Favourits </h1>
         </header>
           <div className="sidebar-left">
           <SearchBar 
@@ -45,7 +43,6 @@ class App extends Component {
           </div>
           <div className="sidebar-right">
             <div className="search-results">
-              <Table></Table>
             </div>
           </div>
           <div className="footer">
@@ -64,19 +61,27 @@ class App extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const api_url= 'https://api.github.com/search/repositories?q='
     const input = event.target.searchBox.value
-    alert(input)
-    fetch(`${api_url}${input}`)
-    .then(blob => blob.json())
-    .then(response => {
-      console.log(response)
-    })
-    this.setState({
-      value: '',
-    })
-    // console.log(`input after setting state is: ${input.value}`);
-    
+    this.getRepo(input)
+  }
+
+
+  async getRepo(input) {
+    const api_url= `https://api.github.com/search/repositories?q=${input}`
+    if (input !== '') { 
+      axios.get(`${api_url}`)
+      // .then(response => response.json())
+      .then(response => {
+        let result = response.data.items
+        console.log(result)
+        return result;
+      })
+      this.setState({
+        // name: this.result.full_name,
+      })
+    } else {
+      alert('Please provide search input')
+    }
   }
 }
 
