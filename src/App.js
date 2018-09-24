@@ -17,6 +17,7 @@ class App extends Component {
 
     // set initial state
     this.state = {
+      sort: 'stars',
       
     };
   }
@@ -67,7 +68,7 @@ class App extends Component {
 
 
   async getRepo(input) {
-    const api_url= `https://api.github.com/search/repositories?q=${input}`
+    const api_url= `https://api.github.com/search/repositories?q=${input}&sort=${this.state.sort}`
     if (input !== '') { 
       axios.get(`${api_url}`)
       // .then(response => response.json())
