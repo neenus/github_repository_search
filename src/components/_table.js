@@ -5,7 +5,6 @@ class Table extends Component {
   render(){
 
     return(
-
     <table>
       <tr>
         <th>Name</th>
@@ -33,7 +32,7 @@ class Table extends Component {
       </tr>
   </table>
 
-    )
+    );
   }
   
 }
